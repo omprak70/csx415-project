@@ -1,0 +1,149 @@
+---
+title: "SimpleAnalysis_RPXErosion"
+author: "Omprakash Samudrala"
+date: "April 24, 2018"
+output: html_document
+---
+
+## Simple Analysis
+
+A Naive model - mean of response variable across the data set, did not provide a prediction that passes the success metric.
+
+A simple analysis is attempted, where the response prediction is obtained by two methods
+
+* Multiple Linear Regression
+* Regression Tree
+
+
+Again, for each of the models above, the mean absolute deviation of the response prediction from the actual response is computed.
+
+Figure out if the success metric is achieved (mean absolute deviation < 0.05)
+
+
+
+```{r echo=FALSE}
+# Read Data
+setwd("C:/Users/ompra/Documents/UCBCourses/DataScience/project/RPXFlows/data")
+library(openxlsx)
+TData <- read.xlsx("ModelDataSet.xlsx")
+nRows <- nrow(TData)
+
+#Shuffle Data
+SData <- TData[sample(nrow(TData)),]
+str(SData)
+summary(SData)
+
+#Split Shuffled Data into training data, validation data & test data
+TrgData <- SData[1:(0.6*nrow(SData)),]
+ValData <- SData[(0.6*nrow(SData)):(0.8*nrow(SData)),]
+TstData <- SData[(0.8*nrow(SData)):nrow(SData),]
+
+#Build histogram of response variable - Erosion Potential
+#ggplot(data=TrgData,aes(x=ErosionPotential)) +
+#  geom_histogram(binwidth=0.1,fill="Magenta",color="Black")
+
+#Build histograms of the five predictors
+#ggplot(data=TrgData,aes(x=MeanProcFlow)) +
+#  geom_histogram(binwidth=20,fill="Blue",color="Black")
+
+#ggplot(data=TrgData,aes(x=StDevProcFlow)) +
+#  geom_histogram(binwidth=2,fill="Green",color="Black")
+
+#ggplot(data=TrgData,aes(x=MeanMotFlow)) +
+#  geom_histogram(binwidth=20,fill="Blue",color="Black")
+
+#ggplot(data=TrgData,aes(x=StDevMotFlow)) +
+#  geom_histogram(binwidth=2,fill="Green",color="Black")
+
+#ggplot(data=TrgData,aes(x=numRPX)) +
+#  geom_histogram(binwidth=1,fill="Brown",color="Black")
+
+#Build a Naive Model to predict Erosion Potential
+#Take the mean
+ErPot_Naive = mean(TrgData$ErosionPotential)
+TrgData$NaiveResponse = c(rep(ErPot_Naive,nrow(TrgData)))
+#head(TrgData)
+
+#Check mean absolute deviation if the model is good
+TrgData$AbsDeviationNaive = abs(TrgData$ErosionPotential - TrgData$NaiveResponse)
+MeanAbsDeviationNaive = mean(TrgData$AbsDeviationNaive)
+
+#Plot actual response and naive model response vs each of the 5 input variables
+library(ggplot2)
+
+#ggplot(data = TrgData) +
+#  geom_point(aes(x = MeanProcFlow, y = NaiveResponse),size=5,color="DarkGreen") +
+#  geom_point(aes(x = MeanProcFlow, y = ErosionPotential)) + 
+#  xlab("Process Flow across RPXs - Mean Flow (GPM)") +
+#  ylab("Erosion Potential")
+  
+#ggplot(data = TrgData) +
+#  geom_point(aes(x = StDevProcFlow, y = #NaiveResponse),size=5,color="DarkGreen") +
+#  geom_point(aes(x = StDevProcFlow, y = ErosionPotential)) + 
+#  xlab("Process Flow across RPXs - Standard Deviation (GPM)") +
+#  ylab("Erosion Potential")
+
+#ggplot(data = TrgData) +
+#  geom_point(aes(x = MeanMotFlow, y = #NaiveResponse),size=5,color="DarkGreen") +
+#  geom_point(aes(x = MeanMotFlow, y = ErosionPotential)) + 
+#  xlab("Motive Flow across RPXs - Mean Flow (GPM)") +
+#  ylab("Erosion Potential")
+
+#ggplot(data = TrgData) +
+#  geom_point(aes(x = StDevMotFlow, y = #NaiveResponse),size=5,color="DarkGreen") +
+#  geom_point(aes(x = StDevMotFlow, y = ErosionPotential)) + 
+#  xlab("Motive Flow across RPXs - Standard Deviation (GPM)") +
+#  ylab("Erosion Potential")
+
+#ggplot(data = TrgData) +
+#  geom_point(aes(x = numRPX, y = NaiveResponse),size=5,color="DarkGreen") +
+#  geom_point(aes(x = numRPX, y = ErosionPotential)) + 
+#  xlab("number of RPXs running") +
+#  ylab("Erosion Potential")
+
+#Build a Linear Model
+LinearModel <- lm(ErosionPotential ~ MeanProcFlow + StDevProcFlow + 
+                    StDevMotFlow + numRPX, data=TrgData)
+summary(LinearModel)
+Coeffs <- coefficients(LinearModel)
+
+#Check mean absolute deviation to see if model is good
+TrgData$LinearResponse <- Coeffs[1] + Coeffs[2]*TrgData$MeanProcFlow +
+  Coeffs[3]*TrgData$StDevProcFlow + Coeffs[4]*TrgData$StDevMotFlow +
+  Coeffs[5]*TrgData$numRPX
+TrgData$AbsDeviationLinear = abs(TrgData$ErosionPotential - TrgData$LinearResponse)
+MeanAbsDeviationLinear = mean(TrgData$AbsDeviationLinear)
+MeanAbsDeviationLinear
+```
+
+The summary of the linear model is shown above. The mean absolute deviation of the response prediction was found to be **`r MeanAbsDeviationLinear`**.
+
+This is more than the success metric requirement of **< 0.05**.
+
+```{r echo=FALSE}
+#Build a Regression Tree
+library(rpart)
+RegTree <- rpart(ErosionPotential ~ MeanProcFlow + StDevProcFlow + MeanMotFlow +
+               StDevMotFlow + numRPX, method="anova", data=TrgData)
+printcp(RegTree)
+plotcp(RegTree)
+summary(RegTree)
+
+#Check mean absolute deviation to see if model is good
+InputDF <- data.frame(TrgData[,1:5])
+TrgData$RegTreeResponse <- predict(RegTree,InputDF)
+TrgData$AbsDeviationRegTree = abs(TrgData$ErosionPotential - TrgData$RegTreeResponse)
+MeanAbsDeviationRegTree = mean(TrgData$AbsDeviationRegTree)
+```
+
+The summary of the regression tree model is shown above. The mean absolute deviation of the response prediction was found to be **`r MeanAbsDeviationRegTree`**.
+
+This is more than the success metric requirement of **< 0.05**.
+
+Both the simple multiple linear regression model and simple regression tree fail to provide response prediction that meet the success metric. Few things to be checked and tried out are
+
+* Are the predictors highly correlated? Try eliminating the predictors or use ridge regression
+* Try random forest methods to improve upon the prediction of the regression tree model. I suspect it may not give better results as the tree wasn't pruned and should not have been very rigid.
+* Is the data set adequate? I suspect that more data is needed, especially at different motive and process flows.
+* The number of predictors was reduced by just taking just the mean and standard deviation of all RPX motive and process flows as predictors. May be the individual RPX flows need to be brought back in as predictors! Adds 20 more input variables!
+

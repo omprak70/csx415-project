@@ -1,0 +1,61 @@
+---
+title: "Enhancing VorTeq Reliability - Project Work Scope"
+author: "Omprakash Samudrala"
+date: "April 9, 2018"
+output: html_document
+---
+
+## VorTeq - Overview 
+
+VorTeq is a proprietary missile developed by Energy Recovery Inc to enhance the reliability and efficiency of fracking oil & gas wells. To the layman, fracking is a process by which oil & gas wells are stimulated to enhance production of hydrocarbons. The fracking process involves a missile injecting high pressure water (mixed with proppant and chemicals) into the oil well to stimulate the formation and keep it open for hydrocarbons to escape to the wellhead.
+ 
+The VorTeq missile is designed to transfer pressure energy from a high pressure (HP) clean motive fluid (usually water) to a process fluid (fracking fluid) and inject it into the well bore. The key components of the missile that perform this pressure exchange are the 12 (or more) rotary pressure exchangers (RPX), each of which is driven by its own VFD (variable frequency drive) controlled induction motor. The high pressure clean motive fluid is supplied by multiple positive displacement pumps provided by the operator. The key failure mode for the VorTeq system is erosion of the RPXs, driven by motive/process flow imbalance. The RPXs carry highly abrasive fluids at very high pressures (up to 15000 psi) and high flow velocities. If the process flow rate, motive flow rate and RPM are not maintained within allowable limits, erosion will occur, resulting in increased motor torque (loss of efficiency) and eventual failure of the RPX. Due to the widely varying conditions at each well site (pressure requirement, flow requirement and fracking fluid composition can vary widely), the VorTeq system has to be robust and operate reliably at many different operating conditions. The number of RPXs operating (at any given time) may range from 6 to 12 (or more), the location of the operating RPXs on the missile may vary, the number of HP pumps deployed by the operator may vary (from 8 to 12) and the location where the motive fluid is supplied to the missile manifolds may vary as well (depending on the layout at the well site). Even if a global flow balance is maintained (between the motive and process fluids) at the missile level, optimal conditions cannot be guaranteed at the individual RPX level due to inherent variation from RPX to RPX, pressure losses in the missile flow network etc. Measuring individual flows through each RPX is not feasible due to the nature of the working fluids and the high pressures at which the system is operating.
+
+## Objectives
+
+The key objective of the project is to enhance the robustness of the missile design, so it can be guaranteed to operate reliably for a minimum of xxxx hrs. Prior to optimizing the missile design, it is essential to understand the level of flow imbalance possible (from RPX to RPX) over the range of operating conditions. Once it is determined, design tweaks to the missile can be deployed to ensure the flow imbalance is kept within acceptable limits at all possible operating conditions.
+
+To characterize the system flow imbalance, a set of experiments were performed recently on the VorTeq missile and large amounts of data was collected for many different operating conditions. The data sets were processed and a single parameter *Erosion Potential* was determined, which loosely represents the % lkelihood of erosion at a given operating condition. This is the response function that our model must predict accurately.
+
+Even if the missile is perfectly flow balanced to start with, due to degradation caused in operation, flow imbalance will creep in, thereby raising "erosion potential". Hence a "stretch" goal for the project is to come up with a predictive tool, which when deployed alerts the operator of an impending failure of a RPX. In addition, the tool must produce the alert sufficiently in advance, so the operator can safely ramp down the RPX or alter its operating conditions (lead flow, RPM, flow rate etc.), so the prediction of impending failure is eliminated.
+
+## Benefits
+
+Operating the missile at its best efficiency will reduce operating cost - run time and power consumed. However, the biggest benefits of enhancing reliability is the increase in MTBF (mean time between failures), increase in inspection/maintenance interval, reduction in warranty costs and most of all increased satisfaction from the customer. The product is new and is still in the process of commercialization, so the numbers are yet to be determined. However, the cost of refurbishing a missile due to catastrophic failure can run into several hundreds of thousands of dollars.
+
+As part of the new initiative on predictive analytics, the project will provide experience to ERI on how to use data science tools to enhance their products.
+
+## Roles & Relationships
+
+* Manager/Owner of the project : Director of Fluids/Hydraulics @ ERI Inc
+* Stakeholders : Director of Product Development, Director of Marketing, CFO
+* Users/SMEs : Engineers of the fluids/hydraulics division
+* Users : Missile operators (in case of a real time predictive model)
+
+## Definition of Success
+
+The project is deemed successful, if the model developed can predict the *Erosion Potential* accurately at all operating conditions. More precisely, the predicted *Erosion Potential* must be within **0.05** of the actual value.
+
+The entire data set available will be randomized and split into three portions - training data, validation data and test data. The training data will be used to develop several different models to predict *Erosion Potential*. The accuracy of the model can be estimated using many different parameters depending on the type of model. However, to maintain consistency across models, mean absolute deviation of the predicted and measured values will be used as the metric to compare models. The validation data will be used for fine tuning the models and to fix the model parameters. The test data will be used to finally determine if the model is successful.
+
+If the mean absolute deviation of the predicted *Erosion Potential* is within **0.05** of the actual value, the model is deemed to have achieved the success metric.
+
+## Risks
+It is possible that there is not adequate data or too much uncertainty in the data collected to accurately map the erosion potential at various operating conditions. Additional data will need to be collected in that case and the project should be able to guide the quantity and accuracy of data needed.
+
+If the model predicts that it is not possible to meet the success metric, a partial success may be achieved by getting as close to the metric as possible. Management may decide to redesign the missile completely if the achieved metric is deemed inadequate.
+
+## Timeline
+
+Task | Expected Completion Date
+------------- | -------------
+Data Organization / Evaluation (using R) | 4/24/18
+Develop preliminary models & evaluate their performance  | 5/8/2018
+Model selection, fine tuning and validation | 5/15/2018
+Predictive Model to Determine Erosion Potential in Real Time | 5/22/2018
+Project Summary Report and Further Recommendations | 5/29/2018
+
+## Model/Solution Deployment
+The missile operators at ERI and/or its customers must be trained to use the model. The user interface must be straight forward and intuitive and the training comprehensive to help ease of deployment. Also, the robustness of the model and accuracy of its predictions will eventually gain the confidence and trust of the users.
+
+The model performance will be tracked continuously and more data will be collected over time. Periodically, the model will be tweaked by running the training and validation phases over the new and old data to improve prediction accuracy.
