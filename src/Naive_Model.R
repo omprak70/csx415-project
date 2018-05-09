@@ -17,6 +17,7 @@ TstData <- SData[(0.8*nrow(SData)):nrow(SData),]
 #Build histogram of response variable - Erosion Potential
 ggplot(data=TrgData,aes(x=ErosionPotential)) +
   geom_histogram(binwidth=0.02,fill="Magenta",color="Black")
+ggsave(file.path('graphs', 'ResponseHistogram.pdf'))
 
 #Build a Naive Model to predict Erosion Potential
 #Take the mean
