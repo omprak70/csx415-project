@@ -8,7 +8,7 @@ munging: TRUE
 logging: FALSE
 logging_level: INFO
 load_libraries: TRUE
-libraries: reshape2, plyr, tidyverse, stringr, lubridate, ggplot2, moderndive
+libraries: reshape2, plyr, tidyverse, stringr, lubridate, ggplot2, moderndive, cowplot
 as_factors: TRUE
 data_tables: FALSE
 attach_internal_libraries: FALSE
