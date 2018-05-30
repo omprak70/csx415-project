@@ -1,36 +1,40 @@
 ---
-title: "ProjectPerformance"
+title: "Naive Model Performance"
 author: "Omprakash Samudrala"
-date: "May 8, 2018"
+date: "May 29, 2018"
 output: html_document
 ---
 
-```{r echo=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-knitr::opts_knit$set(root.dir = normalizePath(".."))
+knitr::opts_knit$set(root.dir = normalizePath("../.."))
 ```
 
-Load the Naive Model
+<br>
 
-```{r message=FALSE, echo=FALSE}
+## Naive Model
+
+```{r message=FALSE, error=FALSE, warning=FALSE}
 library(knitr)
-source('src/Naive_model.R')
-ggplot(data=TrgData,aes(x=ErosionPotential)) +
-  geom_histogram(binwidth=0.02,fill="Magenta",color="Black")
+library(caret)
+source('./src/Models/Naive_Model.R')
 ```
 
-Examine the Naive Model Performance - Erosion Potential Prediction
+### The erosion potential predicted by the Naive model (mean response of training data) was found to be **`r round(ErPot_Naive, 3)`**.
 
-Determine the mean absolute error
+<br>
 
-```{r echo=FALSE}
-NaiveResponse = c(rep(ErPot_Naive,nrow(TstData)))
-AbsDeviationNaive = abs(TstData$ErosionPotential - NaiveResponse)
-MeanAbsDeviationNaive = mean(AbsDeviationNaive)
+## Model Performance
+
+```{r message=FALSE, error=FALSE, warning=FALSE}
+library(Metrics)
+## Compute RMSE and MAE over Test Data
+RMSE_ErPot_Naive <- rmse(TstData$ErosionPotential,
+                         rep(ErPot_Naive,nrow(TstData)))
+MAE_ErPot_Naive <- mae(TstData$ErosionPotential,
+                       rep(ErPot_Naive,nrow(TstData)))
 ```
 
-The Erosion Potential as predicted by the Naive model has a mean absolute deviation of **`r MeanAbsDeviationNaive`** from the true value. 
+### The root mean square error in predicting the erosion potential over the test data is **`r round(RMSE_ErPot_Naive, 3)`**. 
 
-The **Success Metric** required that this value be less than **0.05**. Hence the Naive model falls short of the success metric.
-
-Need to explore additional models.
+### The mean absolute error in predicting the erosion potential over the test data is **`r round(MAE_ErPot_Naive, 3)`**. The success metric as defined in the formal problem statement requires the mean absolute error in predicting erosion potential to be **< 0.05**. Hence the Naive model fails to meet the success metric.

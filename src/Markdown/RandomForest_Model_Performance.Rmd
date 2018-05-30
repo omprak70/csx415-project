@@ -1,0 +1,42 @@
+---
+title: "Random Forest Model Performance"
+author: "Omprakash Samudrala"
+date: "May 29, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath("../.."))
+```
+
+<br>
+
+## Random Forest Model
+
+```{r message=FALSE, error=FALSE, warning=FALSE}
+library(knitr)
+library(caret)
+source('./src/Models/RandomForest_Model.R')
+summary(ErPot_RF)
+plot(ErPot_RF)
+```
+
+<br>
+
+## Model Performance
+
+```{r message=FALSE, error=FALSE, warning=FALSE}
+library(Metrics)
+
+## Compute RMSE and MAE of Tree model over Test Data
+## Compute RMSE and MAE of linear model over Test Data
+RMSE_RF_Response = rmse(TstData$ErosionPotential, ErPot_RF_Predictions)
+MAE_RF_Response = mae(TstData$ErosionPotential, ErPot_RF_Predictions)
+```
+
+### The root mean square error in predicting the erosion potential over the test data is **`r round(RMSE_RF_Response,3)`**. 
+
+### The mean absolute error in predicting the erosion potential over the test data is **`r round(MAE_RF_Response,3)`**. The success metric as defined in the formal problem statement requires the mean absolute error in predicting erosion potential to be **< 0.05**. Hence the Random Forest model meets the success metric.
+
+###**Random Forest** predictor is recommended for estimating the erosion potential of the VorTeq RPXs at any given operating condition.

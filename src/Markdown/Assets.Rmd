@@ -1,0 +1,36 @@
+---
+title: "Assets"
+author: "Omprakash Samudrala"
+date: "May 30, 2018"
+output:
+  md_document:
+    variant: Markdown_github
+---
+
+## Project Assets
+
+| Asset        | Location           | Description  |
+| ------------- |:-------------:| -----:|
+| FPS_VorTeqErosion.Rmd      | csx415-project/src/Markdown | Formal Problem Statement |
+| FPS_VorTeqErosion.html      | csx415-project/reports      |   Formal Problem Statement |
+| FlowImbalanceTestData.xlsx | csx415-project/data      |    Model Training/Test Data |
+| RegResponseHistogram.pdf | csx415-project/graphs      |    Histogram of Erosion Potential (response) data |
+| ClassResponseScatterPlot.pdf | csx415-project/graphs      |    Scatter Plot of Erosion Risk (response) data |
+| Features_MotiveFlows.png | csx415-project/graphs      |    Feature visualization - RPX Motive flows (12X) |
+| Features_ProcessFlows.png | csx415-project/graphs      |    Feature visualization - RPX Process flows (12X) |
+| Features_numRPX.png | csx415-project/graphs      |    Feature visualization - number of RPXs running |
+| ProcessData.R | csx415-project/munge      |    Data processing and splitting |
+| EDA.R | csx415-project/src/Models      |  Exploratory Data Analysis   |
+| NaiveModel.R | csx415-project/src/Models      |  Naive Model   |
+| LinearModel.R | csx415-project/src/Models      |  Linear Regression Model |
+| TreeModel.R | csx415-project/src/Models      |  Decision Tree Model   |
+| RandomForestModel.R | csx415-project/src/Models      |  Random Forest Model |
+| NaiveModelPerformance.Rmd | csx415-project/src/Markdown      |  Naive Model Performance   |
+| LinearModelPerformance.Rmd | csx415-project/src/Markdown      |  Linear Regression Model Performance   |
+| TreeModelPerformance.Rmd | csx415-project/src/Markdown      |  Decision Tree Model Performance   |
+| RandomForestModelPerformance.Rmd | csx415-project/src/Markdown      |  Random Forest Model Performance   |
+| NaiveModelPerformance.html | csx415-project/src/reports      |  Naive Model Performance   |
+| LinearModelPerformance.html | csx415-project/src/reports      |  Linear Regression Model Performance   |
+| TreeModelPerformance.html | csx415-project/src/reports      |  Decision Tree Model Performance   |
+| RandomForestModelPerformance.html | csx415-project/src/reports      |  Random Forest Model Performance   |
+| VorTeq.R | csx415-project/pkgs      |  Model Predictor   |

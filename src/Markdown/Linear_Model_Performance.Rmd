@@ -1,0 +1,37 @@
+---
+title: "Linear Model Performance"
+author: "Omprakash Samudrala"
+date: "May 29, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_knit$set(root.dir = normalizePath("../.."))
+```
+
+<br>
+
+## Linear Regression Model
+
+```{r message=FALSE, error=FALSE, warning=FALSE}
+library(knitr)
+library(caret)
+source('./src/Models/Linear_Model.R')
+ErPot_Linear_summary
+```
+
+<br>
+
+## Model Performance
+
+```{r message=FALSE, error=FALSE, warning=FALSE}
+library(Metrics)
+## Compute RMSE and MAE of linear model over Test Data
+RMSE_LM_Response = rmse(TstData$ErosionPotential, ErPot_Linear_Predictions)
+MAE_LM_Response = mae(TstData$ErosionPotential, ErPot_Linear_Predictions)
+```
+
+### The root mean square error in predicting the erosion potential over the test data is **`r round(RMSE_LM_Response,3)`**. 
+
+### The mean absolute error in predicting the erosion potential over the test data is **`r round(MAE_LM_Response,3)`**. The success metric as defined in the formal problem statement requires the mean absolute error in predicting erosion potential to be **< 0.05**. Hence the linear regression model fails to meet the success metric.

@@ -11,8 +11,11 @@ Data combined from various test cases
    - 7 RPXs are running
    - 6 RPXs are running
 
-Features include (30 total)
+Features include (29 total)
 - Process and Motive flows for each of the 12 RPXs (24 columns)
 - Average Process & Motive Flows as well as Standard Deviations (4 columns)
 - Number of PXs running
-- Erosion potential
+
+Responses include (2 total)
+- Erosion potential (continuous variable for regression)
+- Erosion risk (discrete variable for classification)
