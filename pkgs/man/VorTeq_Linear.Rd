@@ -14,7 +14,5 @@ output containes erosion potential and qualitative erosion risk comment
 }
 \examples{
 VorTeq_Linear(state) # Returns erosion potential predicted by a linear regression model
-VorTeq_Tree(state) # Returns erosion potential predicted by a decision tree model
-VorTeq_RF(state) # Returns erosion potential predicted by a random forest model
 
 }
