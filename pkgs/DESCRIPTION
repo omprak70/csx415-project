@@ -1,0 +1,12 @@
+Package: Erosion
+Type: Package
+Title: VorTeq RPX erosion risk
+Version: 0.1.0
+Author: Omprakash Samudrala <omprak@gmail.com>
+Maintainer: Omprakash Samudrala <omprak@gmail.com>
+Description: Predict erosion risk associated with a given operating condition of VorTeq
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Suggests: testthat
+RoxygenNote: 6.0.1
