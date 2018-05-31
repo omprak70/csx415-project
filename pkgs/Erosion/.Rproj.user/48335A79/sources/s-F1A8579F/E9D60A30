@@ -5,11 +5,11 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "3936202725",
+    "hash" : "0",
     "id" : "E9D60A30",
     "lastKnownWriteTime" : 1527716083,
     "last_content_update" : 1527716083605,
-    "path" : "C:/Users/ompra/Documents/UCBCourses/Datascience/Erosion/data-raw/Erosion_Tree.R",
+    "path" : "C:/Users/ompra/Documents/UCBCourses/Datascience/csx415-project/pkgs/Erosion/data-raw/Erosion_Tree.R",
     "project_path" : "data-raw/Erosion_Tree.R",
     "properties" : {
         "cursorPosition" : "30,0",
