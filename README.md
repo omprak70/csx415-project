@@ -1,39 +1,23 @@
-# csx415-Project
+---
+title: "README"
+author: "Omprakash Samudrala"
+date: "May 30, 2018"
+output: 
+  md_document:
+    variant: Markdown_github
+---
 
-Welcome to ProjectTemplate!
+# CSX415 Project - VorTeq Erosion Risk Prediction
 
-This file introduces you to ProjectTemplate, but you should eventually replace
-the contents of this file with an introduction to your project. People who
-work with your data in the future will thank you for it, including your future
-self.
+## Brief Summary
 
-ProjectTemplate is an R package that helps you organize your statistical
-analysis projects. Since you're reading this file, we'll assume that you've
-already called `create.project()` to set up this project and all of its
-contents.
+The main objective of the project was to determine the risk posed to the VorTeq missile (used in hydrocarbon extraction) by erosion. The erosion risk is quantified into a single variable called the erosion potential. If the erosion potential exceeds **0.3**, there is a high risk of VorTeq failure. Refer to the formal problem statement in the reports section for more details
 
-To load your new project, you'll first need to `setwd()` into the directory
-where this README file is located. Then you need to run the following two
-lines of R code:
+The erosion potential is dependent on 25 features - number of currently operating rotary pressure exchangers (RPXs) - max of 12, the process flow through each of them - 12 process flows (if a particular RPX is not operational, flow is given as zero) and the motive flow through each of the RPXs - 12 motive flows.
 
-	library('ProjectTemplate')
-	load.project()
+The VorTeq Erosion model predicts the erosion potential at any operating condition and informs the user if the erosion risk at the current operating state is high or low.
 
-After you enter the second line of code, you'll see a series of automated
-messages as ProjectTemplate goes about doing its work. This work involves:
-* Reading in the global configuration file contained in `config`.
-* Loading any R packages you listed in he configuration file.
-* Reading in any datasets stored in `data` or `cache`.
-* Preprocessing your data using the files in the `munge` directory.
+Project assets are provided in the **assets.md** file
 
-Once that's done, you can execute any code you'd like. For every analysis
-you create, we'd recommend putting a separate file in the `src` directory.
-If the files start with the two lines mentioned above:
+Refer to the **README.md** file under the deploy folder for more information on how to use the erosion predictor
 
-	library('ProjectTemplate')
-	load.project()
-
-You'll have access to all of your data, already fully preprocessed, and
-all of the libraries you want to use.
-
-For more details about ProjectTemplate, see http://projecttemplate.net
