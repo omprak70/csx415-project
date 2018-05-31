@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1527715238505.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2640730365",
+    "id" : "CCCC8931",
+    "lastKnownWriteTime" : 1527715261,
+    "last_content_update" : 1527715261187,
+    "path" : "C:/Users/ompra/Documents/UCBCourses/Datascience/Erosion/data-raw/Erosion_RF.R",
+    "project_path" : "data-raw/Erosion_RF.R",
+    "properties" : {
+        "cursorPosition" : "0,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

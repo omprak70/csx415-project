@@ -1,0 +1,39 @@
+---
+title: "README"
+author: "Omprakash Samudrala"
+date: "May 30, 2018"
+output:
+  md_document:
+    variant: Markdown_github
+---
+
+## How to use the VorTeq Erosion Predictor
+
+Couldn't bundle my package using *packrat* due to unresolvable errors. Additional work needed to accomplish this.
+
+Alternately, the package can be installed and the predictor functions can be used to make predictions on new data. 
+
+#Installing **Erosion** package
+
+You can install the **Erosion** package from Github as follows
+
+```{r message=FALSE, error=FALSE, warning=FALSE}
+install.packages("devtools") # if needed
+library(devtools)
+devtools::install_github("omprak70/CSX415-project/pkgs/Erosion")
+library(Erosion)
+````
+
+The **Erosion** package comes with three predictor functions - *VorTeq_RF*, *VorTeq_Tree* and *VorTeq_Linear*. As measured by model performance, *VorTeq_RF* gives the most accurate output and is recommended for use. Also, refer to function help for more information.
+
+Each of these functions take a single vector of 25 feature inputs. The first element of the vector is the number of RPXs running (range of 6 to 12). The 2nd through 13th elements contain the RPX process flows (range of 150 gpm to 300 gpm). The 14th through 25th elements contain the RPX motive flows (range of 150 gpm to 300 gpm).
+
+Each of the functions returns a single output - **Erosion Potential** and print out a qualitative statement on the state of erosion risk.
+
+# Input example
+
+```{r message=FALSE, error=FALSE, warning=FALSE}
+input <- c(12,240,235,233,228,227,230,229,235,230,229,226,224,
+              180,179,176,175,183,185,189,188,190,192,189,190))
+VorTeq_RF(input)
+````

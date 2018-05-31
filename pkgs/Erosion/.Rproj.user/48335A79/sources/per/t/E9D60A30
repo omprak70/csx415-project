@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1527714905874.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3936202725",
+    "id" : "E9D60A30",
+    "lastKnownWriteTime" : 1527716083,
+    "last_content_update" : 1527716083605,
+    "path" : "C:/Users/ompra/Documents/UCBCourses/Datascience/Erosion/data-raw/Erosion_Tree.R",
+    "project_path" : "data-raw/Erosion_Tree.R",
+    "properties" : {
+        "cursorPosition" : "30,0",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

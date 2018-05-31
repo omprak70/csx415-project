@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1527721156772.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4184476400",
+    "id" : "FB4294E6",
+    "lastKnownWriteTime" : 1527722508,
+    "last_content_update" : 1527722508304,
+    "path" : "C:/Users/ompra/Documents/UCBCourses/Datascience/Erosion/tests/testthat/test_VorTeq.R",
+    "project_path" : "tests/testthat/test_VorTeq.R",
+    "properties" : {
+        "cursorPosition" : "10,44",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
